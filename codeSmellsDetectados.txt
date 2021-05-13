@@ -11,9 +11,15 @@ Movimiento.java
 
     Pasamanos de agregarMovimiento a la cuenta en el metodo agregateA() (Misplaced methods) (Linea 46 a 49)
 
+    Acciones que son responsabilidad de Cuenta están siendo ejecutadas en Movimiento (Linea 46 a 49)
+
 
 Cuenta.java
 
     Método poner() se puede descomponer en varias partes (Long Method) (Linea 29 a 39)
 
-    Método sacar() se puede descomponer en varias partes (Long Method) (Linea 29 a 39)
+    Metodo sacar() se puede descomponer en varias partes (Long Method) (Linea 29 a 39)
+
+    Setter innecesario de saldo (Linea 77)
+
+    Variables temporales innecesarias que pueden ser calculadas por métodos (Temporary Field) (Linea 48 y 49)
