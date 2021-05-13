@@ -25,4 +25,7 @@ public class Movimiento {
     return this.fecha.equals(fecha);
   }
 
+  public TipoMovimiento getTipoMovimiento() {
+    return tipoMovimiento;
+  }
 }

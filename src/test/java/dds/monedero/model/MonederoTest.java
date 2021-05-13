@@ -19,14 +19,14 @@ public class MonederoTest {
   @BeforeEach
   void init() {
     cuenta = new Cuenta();
-    movimiento = new Movimiento(LocalDate.now(),500,true);
+    movimiento = new Movimiento(LocalDate.now(),500,TipoMovimiento.DEPOSITO);
   }
 
   @Test
   void Poner() {
     cuenta.poner(1500);
     assertEquals(cuenta.getSaldo(),1500);
-    assertEquals(cuenta.getMovimientos().size(),1);
+    assertEquals(cuenta.getDepositos().size(),1);
   }
 
   @Test
@@ -49,7 +49,7 @@ public class MonederoTest {
     cuenta.poner(500);
     cuenta.sacar(500);
     assertEquals(cuenta.getSaldo(),0);
-    assertEquals(cuenta.getMovimientos().size(),2);
+    assertEquals(cuenta.getExtracciones().size(),2);
   }
 
   @Test

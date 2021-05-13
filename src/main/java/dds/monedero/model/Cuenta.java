@@ -12,7 +12,8 @@ import java.util.List;
 public class Cuenta {
 
   private double saldo = 0;
-  private List<Movimiento> movimientos = new ArrayList<>();
+  private List<Movimiento> depositos = new ArrayList<>();
+  private List<Movimiento> extracciones = new ArrayList<>();
 
   public Cuenta() {
     saldo = 0;
@@ -23,15 +24,37 @@ public class Cuenta {
   }
 
   public void poner(double cuanto) {
+    if(this.esDepositoValido(cuanto))
+      cargarDeposito(cuanto);
+  }
+
+  public void cargarDeposito(double cuanto){
+    depositos.add(new Movimiento(LocalDate.now(), cuanto, TipoMovimiento.DEPOSITO));
+    this.saldo += cuanto;
+  }
+
+  public boolean esDepositoValido(double cuanto){
+    return !montoNegativo(cuanto) && !excedeDepositosDiarios();
+  }
+
+  public boolean montoNegativo(double cuanto){
     if (cuanto <= 0) {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
     }
+    return true;
+  }
 
-    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
+  public boolean excedeDepositosDiarios(){
+    if (cantidadDepositosDelDia() >= 3) {
       throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
     }
+    return true;
+  }
 
-    new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
+  public long cantidadDepositosDelDia(){
+    return depositos.stream()
+                    .filter(movimiento -> movimiento.esDeLaFecha(LocalDate.now()))
+                    .count();
   }
 
   public void sacar(double cuanto) {
@@ -62,8 +85,12 @@ public class Cuenta {
         .sum();
   }
 
-  public List<Movimiento> getMovimientos() {
-    return movimientos;
+  public List<Movimiento> getDepositos() {
+    return depositos;
+  }
+
+  public List<Movimiento> getExtracciones() {
+    return extracciones;
   }
 
   public double getSaldo() {
