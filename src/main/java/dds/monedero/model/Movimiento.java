@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Movimiento {
   private LocalDate fecha;
   private double monto;
-  private boolean esDeposito;
+  private TipoMovimiento tipoMovimiento;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  public Movimiento(LocalDate fecha, double monto, TipoMovimiento tipoMovimiento) {
     this.fecha = fecha;
     this.monto = monto;
-    this.esDeposito = esDeposito;
+    this.tipoMovimiento = tipoMovimiento;
   }
 
   public double getMonto() {
