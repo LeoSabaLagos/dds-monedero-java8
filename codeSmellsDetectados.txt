@@ -1,0 +1,19 @@
+Movimiento.java
+
+    Eliminar comentario sobre modelado de dinero (Linea 7 y 8)
+
+    Preguntarle a un movimiento si es un deposito o una extracción (Type Test) (Linea 38 y 42)
+
+    Falta de polimorfismo en el metodo calcularValor, en vez de preguntar si es deposito o no
+    habria que delegar en objetos que calculen su valor (Tell, don’t ask) (Linea 51 a 56)
+
+    Representar con boolean si el movimiento es deposito o no (Primitive Obsession) (Linea 10)
+
+    Pasamanos de agregarMovimiento a la cuenta en el metodo agregateA() (Misplaced methods) (Linea 46 a 49)
+
+
+Cuenta.java
+
+    Método poner() se puede descomponer en varias partes (Long Method) (Linea 29 a 39)
+
+    Método sacar() se puede descomponer en varias partes (Long Method) (Linea 29 a 39)
